@@ -143,12 +143,6 @@ impl<'a> ByteTreeWalker<'a> {
     }
 
     #[inline(always)]
-    #[cfg(test)]
-    pub(crate) fn curr_node(&self) -> &ByteSet {
-        &self.tree.nodes[self.curr_offset]
-    }
-
-    #[inline(always)]
     pub(crate) fn value(&self) -> u64 {
         self.tree.values[self.curr_offset]
     }

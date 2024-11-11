@@ -45,12 +45,6 @@ impl<const NU32: usize> BitSet<NU32> {
     }
 
     #[inline(always)]
-    #[cfg(test)]
-    pub(crate) fn count(&self) -> u32 {
-        self.0.iter().map(|e| e.count_ones()).sum()
-    }
-
-    #[inline(always)]
     pub(crate) fn index(&self, id: usize) -> Option<u32> {
         if !self.includes(id) {
             None
