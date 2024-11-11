@@ -1,0 +1,19 @@
+[package]
+name = "btoken"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pyo3 = { version = "0.22.6", features = ["extension-module"] }
+bit_tree = { path = "./bit_tree" }
+numpy = "0.22.1"
+
+[lib]
+name = "btoken"
+crate-type = ["cdylib"]
+
+
+[workspace]
+members = [
+    "bit_tree",
+]
