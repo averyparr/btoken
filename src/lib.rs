@@ -33,6 +33,32 @@ impl Tokenizer {
         }
     }
 
+    #[staticmethod]
+    fn from_str_vec(tokens: Vec<String>) -> Self {
+        Self {
+            internal: bit_tree::Tokenizer::from_byte_token_dict(
+                tokens
+                    .iter()
+                    .enumerate()
+                    .map(|(i, t)| (t.as_bytes(), i as u64))
+                    .collect(),
+            ),
+        }
+    }
+
+    #[staticmethod]
+    fn from_byte_vec(tokens: Vec<Vec<u8>>) -> Self {
+        Self {
+            internal: bit_tree::Tokenizer::from_byte_token_dict(
+                tokens
+                    .iter()
+                    .enumerate()
+                    .map(|(i, t)| (t.as_slice(), i as u64))
+                    .collect(),
+            ),
+        }
+    }
+
     fn tokenize<'py>(&self, py: Python<'py>, s: Bound<'py, PyString>) -> Bound<'py, PyArray1<u64>> {
         let raw_data = unsafe { s.data() }.expect("Data failure!");
         let mut bytes = raw_data.as_bytes().iter().map(|b| *b).peekable();
