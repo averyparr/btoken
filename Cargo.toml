@@ -13,3 +13,7 @@ name = "btoken"
 crate-type = ["cdylib"]
 
 
+[workspace]
+members = [
+    "bit_tree",
+]
